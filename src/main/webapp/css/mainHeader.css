@@ -1,0 +1,64 @@
+/* mainHeader.css */
+.header {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.header-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+	height: 50px;     /* 원하는 높이로 조정 */
+    width: auto;      /* 비율 유지 */
+    object-fit: contain;
+    margin-right: 0;
+    transform: none;
+}
+
+.nav-left {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-left a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-right {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

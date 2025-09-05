@@ -1,0 +1,40 @@
+/* 푸터 (sticky footer 적용) */
+.footer {
+    background-color: #7B68EE;
+    color: white;
+    padding: 30px 0;
+    margin-top: 50px;
+
+    flex-shrink: 0; /* 크기 줄어들지 않도록 */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-info {
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.footer-info div {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .search-box {
+        width: 350px;
+    }
+    
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
