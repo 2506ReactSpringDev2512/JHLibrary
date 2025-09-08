@@ -7,12 +7,12 @@
     <title>회원가입</title>
 
     <!-- 공통 헤더 CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainHeader.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/mainHeader.css">
 
     <!-- 회원가입 페이지 전용 CSS (로그인과 동일) -->
     <style>
         * {margin:0; padding:0; box-sizing:border-box;}
-        body {font-family:'Malgun Gothic',sans-serif; background-color:#f5f5f5;}
+        body {background-color:#f5f5f5;}
         h2 {font-weight:400;}
 
         .main-layout {
@@ -71,28 +71,29 @@
         <div class="sidebar">
             <h3>회원정보</h3>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/login.jsp">로그인</a></li>
-                <li><a href="${pageContext.request.contextPath}/signup.jsp" class="active">회원가입</a></li>
-                <li><a href="${pageContext.request.contextPath}/findPw.jsp">비밀번호 찾기</a></li>
-                <li><a href="${pageContext.request.contextPath}/changePw.jsp">비밀번호 변경</a></li>
+                <li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                <li><a href="${pageContext.request.contextPath}/member/signup" class="active">회원가입</a></li>
+                <li><a href="${pageContext.request.contextPath}/member/findPw">비밀번호 찾기</a></li>
             </ul>
         </div>
 
         <div class="login-box">
             <h2>회원가입</h2>
-            <form class="login-form" action="${pageContext.request.contextPath}/signup.do" method="post">
-                <input type="text" name="userId" placeholder="아이디를 입력해주세요" required>
-                <input type="password" name="userPw" placeholder="비밀번호를 입력해주세요" required>
-                <input type="password" name="userPwConfirm" placeholder="비밀번호 확인" required>
-                <input type="text" name="userName" placeholder="이름을 입력해주세요" required>
-                <input type="email" name="userEmail" placeholder="이메일을 입력해주세요" required>
-                <button type="submit">회원가입</button>
-            </form>
+            <form class="login-form" action="${pageContext.request.contextPath}/member/signup" method="post">
+			    <input type="text" name="memberId" placeholder="아이디를 입력해주세요" required>
+			    <input type="password" name="memberPw" placeholder="비밀번호를 입력해주세요" required>
+			    <input type="password" name="memberPwConfirm" placeholder="비밀번호 확인" required>
+			    <input type="text" name="memberName" placeholder="이름을 입력해주세요" required>
+			    <input type="text" name="memberPhone" placeholder="전화번호를 입력해주세요" required>
+			    <input type="text" name="memberGender" placeholder="성별을 입력해주세요" required>
+			    <input type="number" name="memberAge" placeholder="나이를 입력해주세요" required>
+			    <button type="submit">회원가입</button>
+			</form>
         </div>
     </div>
 
     <!-- 공통 푸터 적용 -->
     <jsp:include page="../common/footer.jsp"></jsp:include>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/footer.css">
 </body>
 </html>

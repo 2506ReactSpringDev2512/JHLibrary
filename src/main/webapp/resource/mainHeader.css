@@ -1,4 +1,4 @@
-/* mainHeader.css */
+/* 공통 헤더 */
 .header {
     background-color: white;
     padding: 15px 0;
@@ -26,33 +26,32 @@
 }
 
 .logo {
-	height: 50px;     /* 원하는 높이로 조정 */
-    width: auto;      /* 비율 유지 */
+    height: 50px;     
+    width: auto;      
     object-fit: contain;
     margin-right: 0;
     transform: none;
 }
 
-.nav-left {
+.nav-left,
+.nav-right {
     display: flex;
     gap: 30px;
 }
 
-.nav-left a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
-
-.nav-right {
-    display: flex;
-    gap: 20px;
-}
-
+/* 좌/우 메뉴 텍스트 통일 */
+.nav-left a,
 .nav-right a {
     text-decoration: none;
-    color: #666;
-    font-size: 14px;
+    color: #333;          /* 색상 통일 */
+    font-size: 16px;      /* 크기 통일 */
+    font-weight: 600;     /* 두께 통일 */
+    transition: color 0.2s;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+    color: #007bff;       /* hover 시 강조 */
 }
 
 /* 반응형 */

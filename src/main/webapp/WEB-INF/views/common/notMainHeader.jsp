@@ -12,7 +12,7 @@
             </div>
             <nav class="nav-left">
                 <a href="${pageContext.request.contextPath}/rentList.jsp">대여/반납</a>
-				<a href="${pageContext.request.contextPath}/bookList.jsp">도서목록</a>
+                <a href="${pageContext.request.contextPath}/bookList.jsp">도서목록</a>
             </nav>
         </div>
 
@@ -32,16 +32,18 @@
             </button>
         </div>
 
-        <!-- 오른쪽 영역 (로그인, 회원가입) -->
+        <!-- 오른쪽 로그인/회원가입 또는 마이페이지/로그아웃 -->
         <div class="nav-right">
             <c:choose>
-                <c:when test="${not empty sessionScope.user}">
-                    <a href="${pageContext.request.contextPath}/mypage.jsp">${sessionScope.user.name}님</a>
-                    <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+                <c:when test="${not empty sessionScope.loginUser}">
+                    <!-- "..님"은 정적 텍스트로 표시 -->
+                    <span>${sessionScope.loginUser.memberName}님</span>
+                    <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+                    <a href="${pageContext.request.contextPath}/member/mypage.jsp">마이페이지</a>
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/login.jsp">로그인</a>
-                    <a href="${pageContext.request.contextPath}/signup.jsp">회원가입</a>
+                    <a href="${pageContext.request.contextPath}/member/login">로그인</a>
+                    <a href="${pageContext.request.contextPath}/member/signup">회원가입</a>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -54,8 +56,8 @@
         const searchTerm = document.getElementById(inputId).value.trim();
         if (searchTerm) {
             alert('검색어: "' + searchTerm + '"로 검색합니다.');
-            // 실제 구현:
-            // window.location.href = 'search.jsp?keyword=' + encodeURIComponent(searchTerm);
+            // 실제 검색 페이지로 이동할 경우:
+            // window.location.href = '${pageContext.request.contextPath}/search.jsp?keyword=' + encodeURIComponent(searchTerm);
         } else {
             alert('검색어를 입력해주세요.');
         }
@@ -75,7 +77,7 @@
 </script>
 
 <style>
-    /* 기존과 유사한 스타일 유지 */
+    /* 검색창 스타일 */
     .header-search {
         background: white;
         border-radius: 25px;
@@ -107,6 +109,7 @@
         fill: #999;
     }
 
+    /* 반응형 */
     @media (max-width: 768px) {
         .header-search {
             width: 100%;

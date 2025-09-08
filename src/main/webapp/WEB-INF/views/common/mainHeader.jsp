@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainHeader.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/mainHeader.css">
 
 <div class="header">
     <div class="header-container">
@@ -14,20 +14,22 @@
             </div>
             <nav class="nav-left">
                 <a href="${pageContext.request.contextPath}/rentList.jsp">대여/반납</a>
-				<a href="${pageContext.request.contextPath}/bookList.jsp">도서목록</a>
+                <a href="${pageContext.request.contextPath}/bookList.jsp">도서목록</a>
             </nav>
         </div>
 
-        <!-- 오른쪽 로그인/회원가입 -->
+        <!-- 오른쪽 로그인/회원가입 또는 마이페이지/로그아웃 -->
         <div class="nav-right">
             <c:choose>
-                <c:when test="${not empty sessionScope.user}">
-                    <a href="${pageContext.request.contextPath}/mypage.jsp">${sessionScope.user.name}님</a>
-                    <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+                <c:when test="${not empty sessionScope.loginUser}">
+                    <!-- "..님"은 정적 텍스트로 표시 -->
+                    <span>${sessionScope.loginUser.memberName}님</span>
+                    <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+                    <a href="${pageContext.request.contextPath}/member/mypage.jsp">마이페이지</a>
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/login.jsp">로그인</a>
-                    <a href="${pageContext.request.contextPath}/signup.jsp">회원가입</a>
+                    <a href="${pageContext.request.contextPath}/member/login">로그인</a>
+                    <a href="${pageContext.request.contextPath}/member/signup">회원가입</a>
                 </c:otherwise>
             </c:choose>
         </div>
