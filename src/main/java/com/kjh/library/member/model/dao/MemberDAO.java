@@ -39,22 +39,21 @@ public class MemberDAO {
 		return member;
 	}
 
-	public int insertMember(Member member, Connection conn) throws SQLException {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String query = "INSERT INTO MEMBER_TBL VALUES(?,?,?,?,?,?,DEFAULT)";
-		pstmt = conn.prepareStatement(query);
-		pstmt.setString(1,  member.getMemberId());
-		pstmt.setString(2,  member.getMemberPw());
-		pstmt.setString(3,  member.getMemberName());
-		pstmt.setString(4,  member.getMemberPhone());
-		pstmt.setString(5,  member.getMemberGender());
-		pstmt.setInt(6,  member.getMemberAge());
-		result = pstmt.executeUpdate();
-		pstmt.close();
-		conn.close();
-		return result;
-	}
+	// 회원가입
+    public int insertMember(Member member, Connection conn) throws SQLException {
+        String query = "INSERT INTO MEMBER_TBL (MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_PHONE, MEMBER_GENDER, MEMBER_AGE, ADMIN_YN) "
+                     + "VALUES (?, ?, ?, ?, ?, ?, DEFAULT)";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, member.getMemberId());
+        pstmt.setString(2, member.getMemberPw());
+        pstmt.setString(3, member.getMemberName());
+        pstmt.setString(4, member.getMemberPhone());
+        pstmt.setString(5, member.getMemberGender());
+        pstmt.setInt(6, member.getMemberAge());
+        int result = pstmt.executeUpdate();
+        pstmt.close();
+        return result;
+    }
 
 	public Member selectMemberByIdAndName(String memberId, String memberName, Connection conn) throws SQLException {
         Member member = null;
@@ -92,16 +91,23 @@ public class MemberDAO {
         return result;
     }
 	
-	public Member selectMemberById(String memberId, Connection conn) throws SQLException {
-        String query = "SELECT MEMBER_ID, MEMBER_PW FROM MEMBER_TBL WHERE MEMBER_ID=?";
+	// 아이디 중복 체크 (옵션)
+    public Member selectMemberById(String memberId, Connection conn) throws SQLException {
+        String query = "SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_PHONE, MEMBER_GENDER, MEMBER_AGE, ADMIN_YN "
+                     + "FROM MEMBER_TBL WHERE MEMBER_ID=?";
         PreparedStatement pstmt = conn.prepareStatement(query);
         pstmt.setString(1, memberId);
         ResultSet rs = pstmt.executeQuery();
         Member member = null;
-        if(rs.next()) {
+        if (rs.next()) {
             member = new Member();
             member.setMemberId(rs.getString("MEMBER_ID"));
             member.setMemberPw(rs.getString("MEMBER_PW"));
+            member.setMemberName(rs.getString("MEMBER_NAME"));
+            member.setMemberPhone(rs.getString("MEMBER_PHONE"));
+            member.setMemberGender(rs.getString("MEMBER_GENDER"));
+            member.setMemberAge(rs.getInt("MEMBER_AGE"));
+            member.setAdminYn(rs.getString("ADMIN_YN"));
         }
         rs.close();
         pstmt.close();

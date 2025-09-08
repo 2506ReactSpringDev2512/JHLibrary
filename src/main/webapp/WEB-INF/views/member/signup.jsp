@@ -8,8 +8,9 @@
 
     <!-- 공통 헤더 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/mainHeader.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/footer.css">
 
-    <!-- 회원가입 페이지 전용 CSS (로그인과 동일) -->
+    <!-- 회원가입 페이지 전용 CSS -->
     <style>
         * {margin:0; padding:0; box-sizing:border-box;}
         body {background-color:#f5f5f5;}
@@ -56,6 +57,14 @@
         .login-form .link a { font-size:14px; color:#666; text-decoration:none; }
         .login-form .link a:hover { text-decoration:underline; color:#ff4444; }
 
+        /* 성별 라디오 버튼 가로 정렬 */
+        .gender-radio {
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            margin-bottom:15px;
+        }
+
         @media (max-width:768px){
             .main-layout { display:flex; flex-direction:column; align-items:center; }
             .sidebar { width:100%; margin-bottom:30px; }
@@ -79,21 +88,44 @@
 
         <div class="login-box">
             <h2>회원가입</h2>
+
+            <!-- 에러 메시지 -->
+            <c:if test="${not empty errorMsg}">
+                <div style="color:red; margin-bottom:10px; text-align:center;">
+                    ${errorMsg}
+                </div>
+            </c:if>
+
             <form class="login-form" action="${pageContext.request.contextPath}/member/signup" method="post">
-			    <input type="text" name="memberId" placeholder="아이디를 입력해주세요" required>
-			    <input type="password" name="memberPw" placeholder="비밀번호를 입력해주세요" required>
-			    <input type="password" name="memberPwConfirm" placeholder="비밀번호 확인" required>
-			    <input type="text" name="memberName" placeholder="이름을 입력해주세요" required>
-			    <input type="text" name="memberPhone" placeholder="전화번호를 입력해주세요" required>
-			    <input type="text" name="memberGender" placeholder="성별을 입력해주세요" required>
-			    <input type="number" name="memberAge" placeholder="나이를 입력해주세요" required>
-			    <button type="submit">회원가입</button>
-			</form>
+                <input type="text" name="memberId" placeholder="아이디를 입력해주세요" 
+                       pattern="[A-Za-z0-9]{4,20}" title="영어와 숫자만 4~20자리" required>
+
+                <input type="password" name="memberPw" placeholder="비밀번호를 입력해주세요" required>
+                <input type="password" name="memberPwConfirm" placeholder="비밀번호 확인" required>
+
+                <input type="text" name="memberName" placeholder="이름을 입력해주세요" 
+                       pattern="[가-힣A-Za-z]+" title="이름에는 특수문자를 사용할 수 없습니다." required>
+
+                <input type="text" name="memberPhone" placeholder="전화번호를 입력해주세요" 
+                       pattern="\d{11}" title="전화번호는 숫자 11자리만 입력 가능" maxlength="11" required>
+
+                <input type="number" name="memberAge" placeholder="나이를 입력해주세요" required>
+
+                <div class="gender-radio">
+                    <label>
+                        <input type="radio" name="memberGender" value="남" required> 남
+                    </label>
+                    <label>
+                        <input type="radio" name="memberGender" value="여" required> 여
+                    </label>
+                </div>
+
+                <button type="submit">회원가입</button>
+            </form>
         </div>
     </div>
 
-    <!-- 공통 푸터 적용 -->
+    <!-- 공통 푸터 -->
     <jsp:include page="../common/footer.jsp"></jsp:include>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/footer.css">
 </body>
 </html>
