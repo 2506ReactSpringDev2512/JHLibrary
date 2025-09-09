@@ -25,7 +25,7 @@
                     <!-- "..님"은 정적 텍스트로 표시 -->
                     <span>${sessionScope.loginUser.memberName}님</span>
                     <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-                    <a href="${pageContext.request.contextPath}/member/mypage.jsp">마이페이지</a>
+                    <a href="${pageContext.request.contextPath}/member/update">마이페이지</a>
                 </c:when>
                 <c:otherwise>
                     <a href="${pageContext.request.contextPath}/member/login">로그인</a>

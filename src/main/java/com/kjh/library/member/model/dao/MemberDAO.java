@@ -113,4 +113,15 @@ public class MemberDAO {
         pstmt.close();
         return member;
     }
+    
+    public int updateMember(Member m, Connection conn) throws SQLException {
+        String sql = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ?, MEMBER_AGE = ? WHERE MEMBER_ID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, m.getMemberPw());
+            pstmt.setString(2, m.getMemberPhone());
+            pstmt.setInt(3, m.getMemberAge());
+            pstmt.setString(4, m.getMemberId());
+            return pstmt.executeUpdate();
+        }
+    }
 }

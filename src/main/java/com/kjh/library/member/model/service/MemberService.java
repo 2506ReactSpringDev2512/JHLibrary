@@ -76,4 +76,15 @@ public class MemberService {
 	    }
 	    return result;
 	}
+	
+	public int updateMember(Member m) {
+        int result = 0;
+        Connection conn = jdbcTemplate.getConnection();
+        try {
+            result = mDao.updateMember(m, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
