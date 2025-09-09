@@ -12,11 +12,21 @@
 
     <!-- 회원가입 페이지 전용 CSS -->
     <style>
+        /* 기본 세팅 */
         * {margin:0; padding:0; box-sizing:border-box;}
-        body {background-color:#f5f5f5;}
+        html, body {
+            height: 100%;
+        }
+        body {
+            background-color:#f5f5f5;
+            display: flex;
+            flex-direction: column;
+        }
         h2 {font-weight:400;}
 
+        /* 메인 레이아웃 */
         .main-layout {
+            flex: 1; /* 본문이 부족하면 자동으로 늘어나 footer를 아래로 밀어냄 */
             display: grid;
             grid-template-columns: 200px 1fr;
             gap: 40px;
@@ -25,7 +35,8 @@
             padding: 0 20px;
         }
 
-        .sidebar { background-color:#f5f5f5; border-radius:0; box-shadow:none; height:auto;}
+
+        .sidebar { background-color:#f5f5f5; border-radius:0; box-shadow:none; height:auto; position: relative; left: -150px; }
         .sidebar h3 {
             background:#ff4444; color:white; padding:15px; text-align:center; font-size:18px; font-weight:normal; margin-bottom:20px;
         }
@@ -39,10 +50,7 @@
         .sidebar ul li a.active { border:2px solid #ff4444; background-color:white; color:#ff4444; box-sizing:border-box;}
         .sidebar ul li a.active:hover { background-color:white; color:#ff4444; border:2px solid #ff4444;}
 
-        .login-box { 
-            display:flex; flex-direction:column; align-items:center; background-color:white; padding:30px; max-width:400px;
-            border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); justify-self:center;
-        }
+        .login-box { display:flex; flex-direction:column; align-items:center; background-color:white; padding:30px; max-width:400px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); justify-self:center; flex: none; align-self: flex-start; }
         .login-box h2 { font-size:32px; margin-bottom:20px; color:#333; font-weight:1000; }
 
         .login-form { width:100%; max-width:400px;}
@@ -59,11 +67,24 @@
 
         /* 성별 라디오 버튼 가로 정렬 */
         .gender-radio {
-            display:flex;
-            justify-content:center;
-            gap:20px;
-            margin-bottom:15px;
-        }
+		    display: flex;          /* 가로 정렬 */
+		    gap: 30px;              /* 버튼 간격 */
+		    justify-content: center; /* 가운데 정렬 */
+		    margin-bottom: 15px;
+		}
+		
+		.gender-radio label {
+		    display: flex;          /* 라디오 + 글자를 한 행으로 */
+		    align-items: center;    /* 수평 맞춤 */
+		    gap: 5px;               /* 버튼과 글자 간격 */
+		    cursor: pointer;        /* 클릭 영역 표시 */
+		}
+		
+		.gender-radio input[type="radio"] {
+		    vertical-align: middle; /* 버튼을 글자 기준 수직 중앙 */
+		    margin: 0;              /* 불필요한 기본 마진 제거 */
+		}
+
 
         @media (max-width:768px){
             .main-layout { display:flex; flex-direction:column; align-items:center; }
@@ -112,13 +133,15 @@
                 <input type="number" name="memberAge" placeholder="나이를 입력해주세요" required>
 
                 <div class="gender-radio">
-                    <label>
-                        <input type="radio" name="memberGender" value="남" required> 남
-                    </label>
-                    <label>
-                        <input type="radio" name="memberGender" value="여" required> 여
-                    </label>
-                </div>
+				    <label>
+				        <input type="radio" name="memberGender" value="남" required> 남
+				    </label>
+				    <label>
+				        <input type="radio" name="memberGender" value="여" required> 여
+				    </label>
+				</div>
+
+
 
                 <button type="submit">회원가입</button>
             </form>

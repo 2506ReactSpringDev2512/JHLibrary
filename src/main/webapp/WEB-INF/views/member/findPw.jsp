@@ -11,12 +11,21 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/login.css"> <!-- 로그인 페이지 CSS 그대로 사용 -->
 
     <style>
-        /* login.jsp 전용 스타일 그대로 적용 */
+        /* 기본 세팅 */
         * {margin:0; padding:0; box-sizing:border-box;}
-        body {background-color:#f5f5f5;}
+        html, body {
+            height: 100%;
+        }
+        body {
+            background-color:#f5f5f5;
+            display: flex;
+            flex-direction: column;
+        }
         h2 {font-weight:400;}
 
+        /* 메인 레이아웃 */
         .main-layout {
+            flex: 1; /* 본문이 부족하면 자동으로 늘어나 footer를 아래로 밀어냄 */
             display: grid;
             grid-template-columns: 200px 1fr;
             gap: 40px;
@@ -25,7 +34,7 @@
             padding: 0 20px;
         }
 
-        .sidebar { background-color:#f5f5f5; border-radius:0; box-shadow:none; height:auto;}
+        .sidebar { background-color:#f5f5f5; border-radius:0; box-shadow:none; height:auto; position: relative; left: -150px; }
         .sidebar h3 { background:#ff4444; color:white; padding:15px; text-align:center; font-size:18px; font-weight:normal; margin-bottom:20px;}
         .sidebar ul { list-style:none; padding:0; margin:0;}
         .sidebar ul li { margin-bottom:10px;}
@@ -33,7 +42,7 @@
         .sidebar ul li a.active { border:2px solid #ff4444; background-color:white; color:#ff4444; box-sizing:border-box;}
         .sidebar ul li a.active:hover { background-color:white; color:#ff4444; border:2px solid #ff4444;}
 
-        .login-box { display:flex; flex-direction:column; align-items:center; background-color:white; padding:30px; max-width:400px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); justify-self:center;}
+        .login-box { display:flex; flex-direction:column; align-items:center; background-color:white; padding:30px; max-width:400px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); justify-self:center; flex: none; align-self: flex-start; }
         .login-box h2 { font-size:32px; margin-bottom:20px; color:#333; font-weight:1000; }
         .login-form { width:100%; max-width:400px;}
         .login-form input { width:100%; padding:12px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size:16px; outline:none; transition:border-color 0.3s ease;}

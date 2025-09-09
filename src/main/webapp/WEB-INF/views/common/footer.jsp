@@ -6,7 +6,7 @@
     <div class="footer-container">
         <div class="footer-info">
             <div>주소 : 서울특별시 중구 남대문로 120 그레이츠 청계(구 대영빌딩) 2F, 3F</div>
-            <div>제작 : 김진호, 김재훈</div>
+            <div>제작 : 권진호, 김재훈</div>
         </div>
     </div>
 </footer>

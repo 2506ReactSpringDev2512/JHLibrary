@@ -12,10 +12,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/member/signup")
-public class SignUpServlet extends HttpServlet {
+public class SignupServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public SignUpServlet() {
+    public SignupServlet() {
         super();
     }
     
