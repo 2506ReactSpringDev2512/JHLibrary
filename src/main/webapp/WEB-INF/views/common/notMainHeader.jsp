@@ -11,7 +11,7 @@
                 </a>
             </div>
             <nav class="nav-left">
-                <a href="${pageContext.request.contextPath}/rentList.jsp">대여/반납</a>
+                <a href="${pageContext.request.contextPath}/member/rentBook">대여/반납</a>
 				<a href="${pageContext.request.contextPath}/bookList.jsp">도서목록</a>
             </nav>
         </div>

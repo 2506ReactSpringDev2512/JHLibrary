@@ -8,9 +8,9 @@
     <title>도서관 웹사이트</title>
 
     <!-- 공통 CSS -->
-    <link rel="stylesheet" href="./css/mainHeader.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="/resource/mainHeader.css">
+    <link rel="stylesheet" href="/resource/footer.css">
+    <link rel="stylesheet" href="/resource/index.css">
 
     
 </head>
