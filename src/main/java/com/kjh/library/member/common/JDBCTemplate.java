@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class JDBCTemplate {
 	private final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
-	private final String URL = "jdbc:oracle:thin:@192.168.60.229:1521:xe";
-	private final String USER = "LIBMANAGE";
+	private final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	private final String USER = "JHLibrary";
 	private final String PASSWORD = "1234";
 	
 	private static JDBCTemplate instance;

@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="/resource/footer.css">
     <link rel="stylesheet" href="/resource/index.css">
 
-    
 </head>
 <body>
     <!-- 공통 헤더 -->
     <jsp:include page="WEB-INF/views/common/mainHeader.jsp"></jsp:include>
+
     <!-- 메인 검색 섹션 -->
     <section class="main-section">
         <div class="search-container">
@@ -32,67 +32,40 @@
     </section>
 
     <!-- 인기도서 섹션 -->
-<section class="popular-books">
-    <h2 class="section-title">인기도서</h2>
-    <div class="books-grid">
-
-        <c:choose>
-            <c:when test="${not empty popularBooks}">
-                <c:forEach var="book" items="${popularBooks}">
-                    <div class="book-item" onclick="viewBookDetails('${book.id}')">
-                        <div class="book-cover">
-                            <c:choose>
-                                <c:when test="${not empty book.imagePath}">
-                                    <img src="${pageContext.request.contextPath}${book.imagePath}" 
-                                         alt="${book.title}" 
-                                         onerror="this.parentElement.innerHTML='<div class=\'no-image\'>이미지 없음</div>'">
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="no-image">이미지 없음</div>
-                                </c:otherwise>
-                            </c:choose>
+    <section class="popular-books">
+        <h2 class="section-title">인기도서</h2>
+        <div class="books-grid">
+            <c:choose>
+                <c:when test="${not empty popularBooks}">
+                    <c:forEach var="book" items="${popularBooks}">
+                        <div class="book-item" onclick="viewBookDetails('${book.bookNo}')">
+                            <div class="book-cover">
+                                <c:choose>
+                                    <c:when test="${not empty book.imagePath}">
+                                        <img src="${pageContext.request.contextPath}${book.imagePath}" 
+                                             alt="${book.bookName}" 
+                                             onerror="this.parentElement.innerHTML='<div class=\'no-image\'>이미지 없음</div>'">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="no-image">이미지 없음</div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div class="book-title">${book.bookName}</div>
+                            <div class="book-author">${book.bookAuthor}</div>
                         </div>
-                        <div class="book-title">${book.title}</div>
-                        <div class="book-author">${book.author}</div>
-                        <div class="book-category">${book.category}</div>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <div class="book-item">
+                        <div class="book-cover"><div class="no-image">이미지 없음</div></div>
+                        <div class="book-title">예제 도서 1</div>
+                        <div class="book-author">홍길동</div>
                     </div>
-                </c:forEach>
-            </c:when>
-
-            <c:otherwise>
-                <div class="book-item">
-                    <div class="book-cover">
-                        <div class="no-image">이미지 없음</div>
-                    </div>
-                    <div class="book-title">예제 도서 1</div>
-                    <div class="book-author">홍길동</div>
-                    <div class="book-category">소설</div>
-                </div>
-
-                <div class="book-item">
-                    <div class="book-cover">
-                        <div class="no-image">이미지 없음</div>
-                    </div>
-                    <div class="book-title">예제 도서 2</div>
-                    <div class="book-author">김철수</div>
-                    <div class="book-category">역사</div>
-                </div>
-
-                <div class="book-item">
-                    <div class="book-cover">
-                        <div class="no-image">이미지 없음</div>
-                    </div>
-                    <div class="book-title">예제 도서 3</div>
-                    <div class="book-author">이영희</div>
-                    <div class="book-category">과학</div>
-                </div>
-            </c:otherwise>
-        </c:choose>
-
-    </div>
-</section>
-
-
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </section>
 
     <!-- 공통 푸터 -->
     <jsp:include page="WEB-INF/views/common/footer.jsp"></jsp:include>
