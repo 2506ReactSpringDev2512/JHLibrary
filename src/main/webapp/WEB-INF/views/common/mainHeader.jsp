@@ -9,7 +9,7 @@
         <div class="header-left">
             <div class="logo-section">
                 <a href="${pageContext.request.contextPath}/index.jsp">
-                    <img src="${pageContext.request.contextPath}/images/JHLibraryLogo.png" alt="도서관리사이트 로고" class="logo">
+                    <img src="${pageContext.request.contextPath}/resource/images/JHLibraryLogo.png" alt="도서관리사이트 로고" class="logo">
                 </a>
             </div>
             <nav class="nav-left">

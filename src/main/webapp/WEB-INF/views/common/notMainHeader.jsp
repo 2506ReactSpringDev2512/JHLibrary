@@ -7,12 +7,12 @@
         <div class="header-left">
             <div class="logo-section">
                 <a href="${pageContext.request.contextPath}/index.jsp">
-                    <img src="${pageContext.request.contextPath}/images/JHLibraryLogo.png" alt="도서관리사이트 로고" class="logo">
+                    <img src="${pageContext.request.contextPath}/resource/images/JHLibraryLogo.png" alt="도서관리사이트 로고" class="logo">
                 </a>
             </div>
             <nav class="nav-left">
                 <a href="${pageContext.request.contextPath}/member/rentBook">대여/반납</a>
-				<a href="${pageContext.request.contextPath}/bookList.jsp">도서목록</a>
+				<a href="${pageContext.request.contextPath}/member/bookList">도서목록</a>
 
             </nav>
         </div>

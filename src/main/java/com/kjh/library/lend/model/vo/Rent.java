@@ -3,22 +3,36 @@ package com.kjh.library.lend.model.vo;
 public class Rent {
 	private String bookNo;
 	private String lendDate;
-	private String returnDate;
+	private String ExreturnDate;
 	private String bookName;
 	private String author;
 	private String publisher;
 	private String lendYn;
+	private String imagePath;
+	private String description;
 	
 	public Rent() {
 		super();
 	}
-
-	public Rent(String bookNo, String lendDate, String returnDate, String bookName, String author, String publisher,
+	public Rent(String bookNo, String lendDate, String ExreturnDate, String bookName, String author, String publisher,
+            String lendYn, String imagePath) {
+    super();
+    this.bookNo = bookNo;
+    this.lendDate = lendDate;
+    this.ExreturnDate = ExreturnDate;
+    this.bookName = bookName;
+    this.author = author;
+    this.publisher = publisher;
+    this.lendYn = lendYn;
+    this.imagePath = imagePath;
+}
+	
+	public Rent(String bookNo, String lendDate, String ExreturnDate, String bookName, String author, String publisher,
 			String lendYn) {
 		super();
 		this.bookNo = bookNo;
 		this.lendDate = lendDate;
-		this.returnDate = returnDate;
+		this.ExreturnDate = ExreturnDate;
 		this.bookName = bookName;
 		this.author = author;
 		this.publisher = publisher;
@@ -41,12 +55,12 @@ public class Rent {
 		this.lendDate = lendDate;
 	}
 
-	public String getReturnDate() {
-		return returnDate;
+	public String getExReturnDate() {
+		return ExreturnDate;
 	}
 
-	public void setReturnDate(String returnDate) {
-		this.returnDate = returnDate;
+	public void setExReturnDate(String returnDate) {
+		this.ExreturnDate = returnDate;
 	}
 
 	public String getBookName() {
@@ -81,5 +95,20 @@ public class Rent {
 		this.lendYn = lendYn;
 	}
 	
+	public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 	
 }

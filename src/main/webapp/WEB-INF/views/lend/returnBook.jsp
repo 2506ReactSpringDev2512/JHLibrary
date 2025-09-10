@@ -7,7 +7,6 @@
     <title>반납도서 조회</title>
 
     <!-- 공통 헤더 CSS -->
-<<<<<<< HEAD
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/mainHeader.css">
     <!-- 공통 푸터 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/footer.css">
@@ -97,7 +96,7 @@
                                     <td>${book.author}</td>
                                     <td>${book.publisher}</td>
                                     <td>${book.rentDate}</td>
-                                    <td>${book.returnDate}</td>
+                                    <td>${book.exReturnDate}</td>
                                     <td>${book.status}</td>
                                 </tr>
                             </c:forEach>

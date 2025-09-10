@@ -7,11 +7,11 @@
     <title>도서 상세 정보</title>
 
     <!-- 공통 헤더 CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainHeader.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/mainHeader.css">
     <!-- 공통 푸터 CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/footer.css">
     <!-- 사이드바 CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginSidebar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/loginSidebar.css">
 
     <style>
         body {
@@ -99,8 +99,8 @@
         <div class="sidebar">
             <h3>도서목록</h3>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/bookList.jsp">도서목록</a></li>
-                <li><a href="${pageContext.request.contextPath}/bookDetail.jsp" class="active">도서 상세 정보</a></li>
+                <li><a href="${pageContext.request.contextPath}/member/bookList">도서목록</a></li>
+                <li><a href="${pageContext.request.contextPath}/member/bookDetail" class="active">도서 상세 정보</a></li>
             </ul>
         </div>
 
@@ -109,29 +109,43 @@
             <h2>도서 상세 정보</h2>
 
             <c:choose>
-                <c:when test="${not empty book}">
-                    <div class="book-detail">
-                        <img src="${pageContext.request.contextPath}/BOOK-IMG/${book.image}" alt="${book.title}">
-                        <div class="book-info">
-                            <h3>${book.title}</h3>
-                            <p><strong>저자:</strong> ${book.author}</p>
-                            <p><strong>출판사:</strong> ${book.publisher}</p>
-                            <p><strong>발행일:</strong> ${book.publishDate}</p>
-                            <p><strong>ISBN:</strong> ${book.isbn}</p>
-                            <div class="description">
-                                <strong>설명:</strong>
-                                <p>${book.description}</p>
-                            </div>
+    <c:when test="${not empty book}">
+        <div class="book-detail" style="display: flex; gap: 30px; flex-wrap: wrap;">
+            <img src="${pageContext.request.contextPath}/resource/images/${book.imagePath}" alt="${book.bookName}" style="width: 300px; height: 400px; object-fit: cover; border-radius: 4px; background: #ddd;">
+            
+            <div class="book-info" style="flex: 1; min-width: 250px;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tbody>
+                        <tr>
+                            <th style="text-align: left; padding: 8px; font-size: 20px; border-bottom: 2px solid #ddd;" colspan="2">${book.bookName}</th>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left; padding: 8px; width: 100px;">저자</th>
+                            <td style="padding: 8px;">${book.author}</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left; padding: 8px;">출판사</th>
+                            <td style="padding: 8px;">${book.publisher}</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left; padding: 8px; vertical-align: top;">설명</th>
+                            <td style="padding: 8px; line-height: 1.5;">
+                                ${book.description}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                            <a href="${pageContext.request.contextPath}/bookList.jsp" class="back-link">목록으로 돌아가기</a>
-                        </div>
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <p>선택된 도서 정보가 없습니다.</p>
-                    <a href="${pageContext.request.contextPath}/bookList.jsp" class="back-link">목록으로 돌아가기</a>
-                </c:otherwise>
-            </c:choose>
+                <a href="${pageContext.request.contextPath}/bookList.jsp" class="back-link" style="margin-top: 20px; display: inline-block;">목록으로 돌아가기</a>
+            </div>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <p>선택된 도서 정보가 없습니다.</p>
+        <a href="${pageContext.request.contextPath}/bookList.jsp" class="back-link">목록으로 돌아가기</a>
+    </c:otherwise>
+</c:choose>
+
 
         </div>
     </div>

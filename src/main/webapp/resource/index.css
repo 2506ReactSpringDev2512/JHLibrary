@@ -23,7 +23,7 @@ body {
 /* 메인 콘텐츠 영역 → flex:1 로 footer 밀어내기 */
 .main-section {
     background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)),
-                url('../images/mainpage.jpg');
+                url('/resource/images/mainpage.jpg');
     background-size: cover;
     background-position: center;
 

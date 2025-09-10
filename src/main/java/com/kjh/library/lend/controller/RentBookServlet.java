@@ -2,6 +2,7 @@ package com.kjh.library.lend.controller;
 
 import com.kjh.library.lend.model.service.RentService;
 import com.kjh.library.lend.model.vo.Rent;
+import com.kjh.library.member.model.vo.Member;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,26 +22,30 @@ public class RentBookServlet extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 로그인된 사용자 ID 가져오기
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         HttpSession session = request.getSession();
-        String memberId = (String) session.getAttribute("loginId");
 
-//        if (memberId == null) {
-//            // 로그인 안 되어 있으면 로그인 페이지로 리다이렉트
-//            response.sendRedirect(request.getContextPath() + "/login.jsp");
-//            return;
-//        }
+        // ✅ Member 타입으로 꺼내기
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            response.sendRedirect(request.getContextPath() + "/member/login");
+            return;
+        }
 
-        // 대여 도서 리스트 가져오기
+        // ✅ memberId 추출
+        String memberId = loginUser.getMemberId(); // getter 명 확인할 것
+
+        // ✅ 대여 리스트 조회
         List<Rent> rentList = new RentService().selectRentList(memberId);
-
-        // request scope에 저장
         request.setAttribute("rentList", rentList);
 
-        // JSP로 포워딩
-        request.getRequestDispatcher("/WEB-INF/views/lend/rentBook.jsp").forward(request, response);
+        // ✅ JSP로 포워딩
+        request.getRequestDispatcher("/WEB-INF/views/lend/rentBook.jsp")
+               .forward(request, response);
     }
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

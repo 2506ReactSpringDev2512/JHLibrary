@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/mainHeader.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/footer.css">
     <style>
-        /* 기존 CSS 그대로 유지 */
         * {margin:0; padding:0; box-sizing:border-box;}
         body {background-color:#f5f5f5;}
         h2 {font-weight:400; margin-bottom:20px;}
@@ -19,14 +18,26 @@
         .sidebar a { display:block; text-align:center; padding:16px; border-bottom:none; text-decoration:none; color:#333; background-color:white; transition: background-color 0.3s ease, color 0.3s ease; font-weight:500; margin-bottom:10px; cursor:pointer; }
         .sidebar a.active { border:2px solid #ff4444; background-color:white; color:#ff4444; box-sizing:border-box; }
         .sidebar a:hover { background-color:#f0f0f0; }
-        .content { display:flex; flex-direction:column; background:white; padding:30px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); }
+        .content { display:flex; flex-direction:column; background:white; padding:30px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); text-align: center; margin-bottom: 80px;}
         table { width:100%; border-collapse: collapse; margin-bottom:20px; }
-        th, td { border:1px solid #ccc; padding:12px; text-align:center; }
-        th { background:#f8f8f8; width:200px; }
+        th, td { border:1px solid #ccc; padding:12px; text-align:left; }
+        th { background:#f8f8f8; width:200px; text-align: center; }
         input[type="text"], input[type="password"], input[type="number"] { width:90%; padding:6px; border:1px solid #ccc; border-radius:4px; }
         .btn { display:inline-block; padding:10px 20px; background:#ff4444; color:white; border-radius:6px; text-decoration:none; border:none; cursor:pointer; }
         .btn:hover { background:#e63636; }
+        .btn-wrapper { display: flex; justify-content: center; margin-top: 20px; }
         @media (max-width:768px){ .mypage-wrapper { grid-template-columns: 1fr; } .sidebar { width:100%; margin-bottom:20px; } }
+        footer {
+        position: fixed;    /* 화면에 고정 */
+        bottom: 0;          /* 맨 아래 */
+        left: 0;
+        width: 100%;        /* 전체 너비 */
+        background-color: #333;  /* 기존 footer 색상과 맞춰주세요 */
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        z-index: 1000;      /* 다른 요소 위에 표시 */
+    }
     </style>
 </head>
 <body>
@@ -42,21 +53,28 @@
 
     <div class="content">
         <h2>개인정보 조회</h2>
-        <form action="${pageContext.request.contextPath}/member/update" method="post">
-            <table>
-                <tr><th>아이디</th><td>${sessionScope.loginUser.memberId}</td></tr>
-                <tr><th>비밀번호</th><td><input type="password" name="memberPw" value="${sessionScope.loginUser.memberPw}" required></td></tr>
-                <tr><th>성명</th><td>${sessionScope.loginUser.memberName}</td></tr>
-                <tr><th>연락처</th><td><input type="text" name="memberPhone" value="${sessionScope.loginUser.memberPhone}" required></td></tr>
-                <tr><th>성별</th><td>${sessionScope.loginUser.memberGender}</td></tr>
-                <tr><th>나이</th><td><input type="number" name="memberAge" value="${sessionScope.loginUser.memberAge}" required></td></tr>
-            </table>
-            <button type="submit" class="btn">저장하기</button>
-        </form>
+        <form onsubmit="showAlert(); return false;">
+		    <table>
+		        <tr><th>아이디</th><td>${sessionScope.loginUser.memberId}</td></tr>
+		        <tr><th>비밀번호</th><td><input type="password" name="memberPw" value="${sessionScope.loginUser.memberPw}" required></td></tr>
+		        <tr><th>성명</th><td>${sessionScope.loginUser.memberName}</td></tr>
+		        <tr><th>연락처</th><td><input type="text" name="memberPhone" value="${sessionScope.loginUser.memberPhone}" required></td></tr>
+		        <tr><th>성별</th><td>${sessionScope.loginUser.memberGender}</td></tr>
+		        <tr><th>나이</th><td><input type="number" name="memberAge" value="${sessionScope.loginUser.memberAge}" required></td></tr>
+		    </table>
+		    <div class="btn-wrapper">
+		        <button type="submit" class="btn">저장하기</button>
+		    </div>
+		</form>
     </div>
 </div>
 
 <jsp:include page="../common/footer.jsp"></jsp:include>
+<script>
+function showAlert() {
+    alert("저장이 완료되었습니다!");
+}
+</script>
 
 </body>
 </html>

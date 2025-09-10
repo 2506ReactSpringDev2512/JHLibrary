@@ -7,7 +7,6 @@
     <title>대여도서 조회</title>
     
     <!-- 공통 헤더 CSS -->
-<<<<<<< HEAD
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/mainHeader.css">
     <!-- 공통 푸터 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/footer.css">
@@ -15,9 +14,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/loginSidebar.css">
 
     <style>
-    	body {
-    		background-color: #f5f5f5;
-    	}
+        body {
+            background-color: #f5f5f5;
+        }
     
         .main-layout {
             display: grid;
@@ -60,9 +59,15 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
+            transition: background 0.3s ease;
         }
-        .return-btn:hover {
+        .return-btn:hover:not(:disabled) {
             background: #e63636;
+        }
+        .return-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            color: #666;
         }
     </style>
 </head>
@@ -102,20 +107,32 @@
                             <c:forEach var="book" items="${rentList}" varStatus="status">
                                 <tr>
                                     <td>${status.index + 1}</td>
-                                    <td>${book.title}</td>
+                                    <td>${book.bookName}</td>
                                     <td>${book.author}</td>
                                     <td>${book.publisher}</td>
-                                    <td>${book.rentDate}</td>
-                                    <td>${book.returnDueDate}</td>
-                                    <td>${book.status}</td>
+                                    <td>${book.lendDate}</td>
+                                    <td>${book.exReturnDate}</td>
+                                    
                                     <td>
-                                        <c:if test="${book.status eq '대여중'}">
-                                            <form action="${pageContext.request.contextPath}/returnBook.do" method="post" style="margin:0;">
-                                                <input type="hidden" name="bookNo" value="${book.bookNo}">
-                                                <button type="submit" class="return-btn">반납</button>
-                                            </form>
-                                        </c:if>
+                                        <c:choose>
+                                            <c:when test="${book.lendYn eq 'Y'}">대여불가</c:when>
+                                            <c:when test="${book.lendYn eq 'N'}">대여가능</c:when>
+                                            <c:otherwise>알수없음</c:otherwise>
+                                        </c:choose>
                                     </td>
+                                    <td>
+									    <form action="${pageContext.request.contextPath}/member/returnBook" method="post" style="margin:0;">
+									        <input type="hidden" name="bookNo" value="${book.bookNo}">
+									        <c:choose>
+									            <c:when test="${book.lendYn ne 'Y'}">
+									                <button type="submit" class="return-btn" disabled>반납</button>
+									            </c:when>
+									            <c:otherwise>
+									                <button type="submit" class="return-btn">반납</button>
+									            </c:otherwise>
+									        </c:choose>
+									    </form>
+									</td>
                                 </tr>
                             </c:forEach>
                         </c:when>
