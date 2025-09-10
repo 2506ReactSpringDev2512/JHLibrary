@@ -19,13 +19,24 @@
         .sidebar a { display:block; text-align:center; padding:16px; border-bottom:none; text-decoration:none; color:#333; background-color:white; transition: background-color 0.3s ease, color 0.3s ease; font-weight:500; margin-bottom:10px; cursor:pointer; }
         .sidebar a.active { border:2px solid #ff4444; background-color:white; color:#ff4444; box-sizing:border-box; }
         .sidebar a:hover { background-color:#f0f0f0; }
-        .content { display:flex; flex-direction:column; background:white; padding:30px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); }
+        .content { display:flex; flex-direction:column; background:white; padding:30px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); text-align: center;}
         table { width:100%; border-collapse: collapse; margin-bottom:20px; }
         th, td { border:1px solid #ccc; padding:12px; text-align:center; }
         th { background:#f8f8f8; width:200px; }
         .btn { display:inline-block; padding:10px 20px; background:#ff4444; color:white; border-radius:6px; text-decoration:none; border:none; cursor:pointer; }
         .btn:hover { background:#e63636; }
         @media (max-width:768px){ .mypage-wrapper { grid-template-columns: 1fr; } .sidebar { width:100%; margin-bottom:20px; } }
+        footer {
+        position: fixed;    /* 화면에 고정 */
+        bottom: 0;          /* 맨 아래 */
+        left: 0;
+        width: 100%;        /* 전체 너비 */
+        background-color: #333;  /* 기존 footer 색상과 맞춰주세요 */
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        z-index: 1000;      /* 다른 요소 위에 표시 */
+    }
     </style>
 </head>
 <body>
@@ -42,28 +53,46 @@
     <div class="content">
         <h2>대여정보 조회</h2>
         <table>
-            <tr>
-                <th>도서번호</th>
-                <th>대여일</th>
-                <th>반납예정일</th>
-                <th>상태</th>
-            </tr>
-				<c:choose>
-				    <c:when test="${not empty rentList}">
-				        <c:forEach var="rent" items="${rentList}">
-				            <tr>
-				                <td>${rent.bookNo}</td>
-				                <td>${rent.lendDate}</td>
-				                <td>${rent.returnDate != null ? rent.returnDate : "미반납"}</td>
-				                <td>${rent.returnDate != null ? "반납완료" : "대여중"}</td>
-				            </tr>
-				        </c:forEach>
-				    </c:when>
-				    <c:otherwise>
-				        <tr><td colspan="4">대여한 도서가 없습니다.</td></tr>
-				    </c:otherwise>
-				</c:choose>
-        </table>
+		    <tr>
+		        <th>No.</th>
+		        <th>도서명</th>
+		        <th>저자</th>
+		        <th>출판사</th>
+		        <th>대여일자</th>
+		        <th>반납예정일</th>
+		        <th>상태</th>
+		    </tr>
+		    <c:choose>
+		        <c:when test="${not empty rentList}">
+		            <c:forEach var="rent" items="${rentList}" varStatus="status">
+		                <tr>
+		                    <td>${status.count}</td>
+		                    <td>${rent.bookName}</td>
+		                    <td>${rent.bookAuthor}</td>
+		                    <td>${rent.bookPublisher}</td>
+		                    <td>${rent.lendDate}</td>
+		                    <td>
+		                        <c:choose>
+		                            <c:when test="${not empty rent.returnDate}">
+		                                ${rent.returnDate}
+		                            </c:when>
+		                            <c:otherwise>미반납</c:otherwise>
+		                        </c:choose>
+		                    </td>
+		                    <td>
+		                        <c:choose>
+		                            <c:when test="${not empty rent.returnDate}">반납완료</c:when>
+		                            <c:otherwise>대여중</c:otherwise>
+		                        </c:choose>
+		                    </td>
+		                </tr>
+		            </c:forEach>
+		        </c:when>
+		        <c:otherwise>
+		            <tr><td colspan="7">대여한 도서가 없습니다.</td></tr>
+		        </c:otherwise>
+		    </c:choose>
+		</table>
     </div>
 </div>
 

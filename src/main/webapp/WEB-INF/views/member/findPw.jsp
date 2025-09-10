@@ -40,7 +40,11 @@
         .sidebar ul li { margin-bottom:10px;}
         .sidebar ul li a { display:block; text-align:center; padding:16px; text-decoration:none; color:#333; background-color:white; transition: background-color 0.3s ease, color 0.3s ease; font-weight:500;}
         .sidebar ul li a.active { border:2px solid #ff4444; background-color:white; color:#ff4444; box-sizing:border-box;}
-        .sidebar ul li a.active:hover { background-color:white; color:#ff4444; border:2px solid #ff4444;}
+        .sidebar ul li a:hover,
+		.sidebar ul li a.active:hover {
+		    background-color: #f0f0f0;
+		    text-decoration: none;
+		}
 
         .login-box { display:flex; flex-direction:column; align-items:center; background-color:white; padding:30px; max-width:400px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.05); justify-self:center; flex: none; align-self: flex-start; }
         .login-box h2 { font-size:32px; margin-bottom:20px; color:#333; font-weight:1000; }
@@ -57,6 +61,10 @@
             .main-layout { display:flex; flex-direction:column; align-items:center; }
             .sidebar { width:100%; margin-bottom:30px; }
             .login-box { width:100%; padding:30px 20px; }
+        }
+        
+        footer {
+            margin-top: auto;
         }
     </style>
 </head>
