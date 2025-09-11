@@ -8,7 +8,7 @@
         <!-- 왼쪽 로고 + 네비게이션 -->
         <div class="header-left">
             <div class="logo-section">
-                <a href="${pageContext.request.contextPath}/index.jsp">
+                <a href="${pageContext.request.contextPath}/main">
                     <img src="${pageContext.request.contextPath}/resource/images/JHLibraryLogo.png" alt="도서관리사이트 로고" class="logo">
                 </a>
             </div>

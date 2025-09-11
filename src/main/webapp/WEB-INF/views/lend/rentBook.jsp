@@ -114,21 +114,21 @@
                                     <td>${book.exReturnDate}</td>
                                     
                                     <td>
-                                        <c:choose>
-                                            <c:when test="${book.lendYn eq 'Y'}">대여불가</c:when>
-                                            <c:when test="${book.lendYn eq 'N'}">대여가능</c:when>
-                                            <c:otherwise>알수없음</c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td>
+									    <c:choose>
+									        <c:when test="${book.lendYn eq 'Y'}">대여중</c:when>
+									        <c:when test="${book.lendYn eq 'N'}">대여가능</c:when>
+									        <c:otherwise>알수없음</c:otherwise>
+									    </c:choose>
+									</td>
+									<td>
 									    <form action="${pageContext.request.contextPath}/member/returnBook" method="post" style="margin:0;">
 									        <input type="hidden" name="bookNo" value="${book.bookNo}">
 									        <c:choose>
-									            <c:when test="${book.lendYn ne 'Y'}">
-									                <button type="submit" class="return-btn" disabled>반납</button>
+									            <c:when test="${book.lendYn eq 'Y'}">
+									                <button type="submit" class="return-btn">반납</button>
 									            </c:when>
 									            <c:otherwise>
-									                <button type="submit" class="return-btn">반납</button>
+									                <button type="submit" class="return-btn" disabled>반납완료</button>
 									            </c:otherwise>
 									        </c:choose>
 									    </form>

@@ -5,8 +5,9 @@ public class Rent {
     private String bookName;
     private String bookAuthor;
     private String bookPublisher;
-    private String lendDate;
+	private String lendDate;
     private String ExreturnDate;
+    private String returnDate;
 
     // Getter/Setter
     public String getBookNo() { return bookNo; }
@@ -28,5 +29,7 @@ public class Rent {
     public String getExReturnDate() { return ExreturnDate; }
     public void setExReturnDate(String ExreturnDate) { this.ExreturnDate = ExreturnDate; }
 	
+    public String getReturnDate() { return returnDate; }
+    public void setReturnDate(String returnDate) { this.returnDate = returnDate; }
 }
     

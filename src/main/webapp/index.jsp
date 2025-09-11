@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/resource/mainHeader.css">
     <link rel="stylesheet" href="/resource/footer.css">
     <link rel="stylesheet" href="/resource/index.css">
-
 </head>
 <body>
     <!-- 공통 헤더 -->
@@ -33,48 +32,57 @@
 
     <!-- 인기도서 섹션 -->
     <section class="popular-books">
-        <h2 class="section-title">인기도서</h2>
-        <div class="books-grid">
-            <c:choose>
-                <c:when test="${not empty popularBooks}">
-                    <c:forEach var="book" items="${popularBooks}">
-                        <div class="book-item" onclick="viewBookDetails('${book.bookNo}')">
-                            <div class="book-cover">
-                                <c:choose>
-                                    <c:when test="${not empty book.imagePath}">
-                                        <img src="${pageContext.request.contextPath}${book.imagePath}" 
-                                             alt="${book.bookName}" 
-                                             onerror="this.parentElement.innerHTML='<div class=\'no-image\'>이미지 없음</div>'">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="no-image">이미지 없음</div>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                            <div class="book-title">${book.bookName}</div>
-                            <div class="book-author">${book.bookAuthor}</div>
-                        </div>
-                    </c:forEach>
-                </c:when>
-                <c:otherwise>
-                    <div class="book-item">
-                        <div class="book-cover"><div class="no-image">이미지 없음</div></div>
-                        <div class="book-title">예제 도서 1</div>
-                        <div class="book-author">홍길동</div>
-                    </div>
-                </c:otherwise>
-            </c:choose>
+    <div class="section-books">
+    
+        <h2 class="section-title">최신도서</h2>
+	        <div class="books-grid">
+	            <c:choose>
+	                <c:when test="${not empty popularBooks}">
+	                    <c:forEach var="book" items="${popularBooks}">
+	                        <div class="book-item" onclick="viewBookDetails('${book.bookNo}')">
+	                            <div class="book-cover" style="overflow: hidden !important;">
+	                                <c:choose>
+	                                    <c:when test="${not empty book.imagePath}">
+	                                        <img src="${pageContext.request.contextPath}/resource/images/${book.imagePath}"
+	                                             alt="${book.bookName}"
+	                                             style="max-width: 100% !important; max-height: 100% !important; object-fit: cover !important;"
+	                                             onerror="this.parentElement.innerHTML='<div class=\'no-image\'>이미지 없음</div>'">
+	                                    </c:when>
+	                                    <c:otherwise>
+	                                        <div class="no-image">이미지 없음</div>
+	                                    </c:otherwise>
+	                                </c:choose>
+	                            </div>
+	                            <div class="book-title">${book.bookName}</div>
+	                            <div class="book-author">${book.bookAuthor}</div>
+	                        </div>
+	                    </c:forEach>
+	                </c:when>
+	                <c:otherwise>
+	                    <div class="book-item">
+	                        <div class="book-cover">
+	                            <div class="no-image">이미지 없음</div>
+	                        </div>
+	                        <div class="book-title">예제 도서 1</div>
+	                        <div class="book-author">홍길동</div>
+	                    </div>
+	                </c:otherwise>
+	            </c:choose>
+	    	</div>
         </div>
     </section>
 
     <!-- 공통 푸터 -->
     <jsp:include page="WEB-INF/views/common/footer.jsp"></jsp:include>
 
+    <!-- 🔍 검색 스크립트 -->
     <script>
         function searchBooks() {
             const searchTerm = document.getElementById('searchInput').value.trim();
             if (searchTerm) {
-                alert('검색어: "' + searchTerm + '"로 검색합니다.');
+                // 페이지 이동 방식으로 검색
+                const url = '/main/search?keyword=' + encodeURIComponent(searchTerm);
+                window.location.href = url;
             } else {
                 alert('검색어를 입력해주세요.');
             }

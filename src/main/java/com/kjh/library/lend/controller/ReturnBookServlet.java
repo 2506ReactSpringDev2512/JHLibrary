@@ -16,22 +16,19 @@ import com.kjh.library.member.model.vo.Member;
 
 /**
  * Servlet implementation class ReturnBookServlet
+ * 반납도서 조회 및 반납 처리
  */
 @WebServlet("/member/returnBook")
 public class ReturnBookServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+
     public ReturnBookServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    /**
+     * 반납된 도서 목록 조회
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -41,17 +38,22 @@ public class ReturnBookServlet extends HttpServlet {
             return;
         }
 
-        String memberId = loginUser.getMemberId(); // ← 실제 getter 이름 확인
+        String memberId = loginUser.getMemberId();
 
-        List<Rent> rentList = new RentService().selectRentList(memberId);
-        request.setAttribute("rentList", rentList);
+        // 반납된 도서 목록 조회
+        List<Rent> returnList = new RentService().selectReturnList(memberId);
+        request.setAttribute("returnList", returnList);
 
         request.getRequestDispatcher("/WEB-INF/views/lend/returnBook.jsp")
-               .forward(request, response);
+            .forward(request, response);
     }
 
+    /**
+     * 도서 반납 처리
+     */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
@@ -84,5 +86,4 @@ public class ReturnBookServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(request, response);
         }
     }
-
 }

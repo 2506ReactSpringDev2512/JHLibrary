@@ -10,6 +10,9 @@ public class Rent {
 	private String lendYn;
 	private String imagePath;
 	private String description;
+	private String returnDate;
+	
+	
 	
 	public Rent() {
 		super();
@@ -109,6 +112,14 @@ public class Rent {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
     }
 	
 }

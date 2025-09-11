@@ -59,7 +59,7 @@
 		        <th>저자</th>
 		        <th>출판사</th>
 		        <th>대여일자</th>
-		        <th>반납예정일</th>
+		        <th>반납일</th>
 		        <th>상태</th>
 		    </tr>
 		    <c:choose>
@@ -73,15 +73,15 @@
 		                    <td>${rent.lendDate}</td>
 		                    <td>
 		                        <c:choose>
-		                            <c:when test="${not empty rent.exReturnDate}">
-		                                ${rent.exReturnDate}
+		                            <c:when test="${not empty rent.returnDate}">
+		                                ${rent.returnDate}
 		                            </c:when>
 		                            <c:otherwise>미반납</c:otherwise>
 		                        </c:choose>
 		                    </td>
 		                    <td>
 		                        <c:choose>
-		                            <c:when test="${not empty rent.exReturnDate}">반납완료</c:when>
+		                            <c:when test="${not empty rent.returnDate}">반납완료</c:when>
 		                            <c:otherwise>대여중</c:otherwise>
 		                        </c:choose>
 		                    </td>

@@ -6,7 +6,7 @@
         <!-- 왼쪽 로고 + 네비게이션 -->
         <div class="header-left">
             <div class="logo-section">
-                <a href="${pageContext.request.contextPath}/index.jsp">
+                <a href="${pageContext.request.contextPath}/">
                     <img src="${pageContext.request.contextPath}/resource/images/JHLibraryLogo.png" alt="도서관리사이트 로고" class="logo">
                 </a>
             </div>
@@ -56,9 +56,8 @@
     function searchBooks(inputId) {
         const searchTerm = document.getElementById(inputId).value.trim();
         if (searchTerm) {
-            alert('검색어: "' + searchTerm + '"로 검색합니다.');
-            // 실제 검색 페이지로 이동할 경우:
-            // window.location.href = '${pageContext.request.contextPath}/search.jsp?keyword=' + encodeURIComponent(searchTerm);
+            // alert 삭제하고 실제 검색 페이지 이동으로 변경
+            window.location.href = '${pageContext.request.contextPath}/main/search?keyword=' + encodeURIComponent(searchTerm);
         } else {
             alert('검색어를 입력해주세요.');
         }

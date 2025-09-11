@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>반납도서 조회</title>
-
+    
     <!-- 공통 헤더 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/mainHeader.css">
     <!-- 공통 푸터 CSS -->
@@ -17,7 +17,7 @@
         body {
             background-color: #f5f5f5;
         }
-
+    
         .main-layout {
             display: grid;
             grid-template-columns: 200px 1fr; /* 사이드바 + 본문 */
@@ -34,24 +34,24 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             width: 100%;
         }
-
+        
         h2 {
             font-size: 28px;
             margin-bottom: 20px;
             text-align: center;
         }
-
+        
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
         }
-
+        
         th, td {
             padding: 12px;
             border-bottom: 1px solid #ddd;
         }
-
+        
         th {
             background: #f9f9f9;
         }
@@ -92,12 +92,12 @@
                             <c:forEach var="book" items="${returnList}" varStatus="status">
                                 <tr>
                                     <td>${status.index + 1}</td>
-                                    <td>${book.title}</td>
+                                    <td>${book.bookName}</td>
                                     <td>${book.author}</td>
                                     <td>${book.publisher}</td>
-                                    <td>${book.rentDate}</td>
-                                    <td>${book.exReturnDate}</td>
-                                    <td>${book.status}</td>
+                                    <td>${book.lendDate}</td>
+                                    <td>${book.returnDate}</td>
+                                    <td>반납완료</td>
                                 </tr>
                             </c:forEach>
                         </c:when>

@@ -1,10 +1,9 @@
+/* 초기화 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-/* 100% 높이와 margin 제거 필수 */
 
 /* 100% 높이와 margin 제거 */
 html, body {
@@ -14,20 +13,18 @@ html, body {
 
 body {
     background-color: #f5f5f5;
-
-    display: flex;              /* flex 컨테이너 */
-    flex-direction: column;     /* 세로 정렬 */
-    min-height: 100vh;          /* 화면 전체 높이 */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* 메인 콘텐츠 영역 → flex:1 로 footer 밀어내기 */
+/* 메인 검색 섹션 */
 .main-section {
     background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)),
                 url('/resource/images/mainpage.jpg');
     background-size: cover;
     background-position: center;
-
-    min-height: 600px;          /* 기존 400px → 600px 로 늘림 */
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,10 +72,14 @@ body {
 
 /* 인기도서 섹션 */
 .popular-books {
-    max-width: 1200px;
-    margin: 50px auto;
     padding: 0 20px;
-    flex: 1; /* 남는 공간 차지 */
+    flex: 1;
+}
+
+.section-books {
+    max-width: 1200px; /* 적절한 최대 너비 */
+    margin: 0 auto;    /* 좌우 중앙 정렬 */
+    padding: 0 20px;   /* 여백 조금 주기 */
 }
 
 .section-title {
@@ -86,20 +87,28 @@ body {
     font-size: 28px;
     margin-bottom: 40px;
     color: #333;
-    font-weight: 1200;
+    font-weight: 700;
 }
 
+/* books-grid: 그리드 레이아웃 사용 */
 .books-grid {
-    display: flex;
-    flex-wrap: nowrap;          /* 줄바꿈 방지 */
-    justify-content: flex-start;
-    gap: 30px;
-    overflow-x: auto;           /* 가로 스크롤 활성화 */
-    padding-bottom: 10px;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+    gap: 30px !important;
+    justify-items: center;
+    
+    padding: 20px 0;
+    overflow: visible;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
+/* 각 책 아이템 */
 .book-item {
-    flex: 0 0 auto;             /* 너비 고정 및 줄바꿈 방지 */
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;
+    max-width: 180px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -109,18 +118,73 @@ body {
     transform: translateY(-5px);
 }
 
+/* 책 표지 컨테이너 */
 .book-cover {
-    width: 160px;
-    height: 220px;
-    background: linear-gradient(135deg, #ddd 0%, #ccc 100%);
-    margin: 0 auto 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  overflow: clip !important;
+  min-width: 0;
+  min-height: 0;
+}
+
+.book-cover:hover img {
+    transform: scale(1.05);
+}
+
+/* 이미지 없음 대체 */
+.no-image {
+    color: #999;
+    font-size: 14px;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f1f3f4 0%, #e8eaed 100%);
+    border: 2px dashed #dadce0;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* 제목 */
+.book-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 42px;
+}
+
+/* 저자명 */
+.book-author {
     font-size: 14px;
+    color: #666;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .book-category {
@@ -129,15 +193,57 @@ body {
     margin-top: 10px;
 }
 
-@media (max-width: 768px) {
+/* 반응형 미디어쿼리 */
+@media (max-width: 1024px) {
     .books-grid {
-        display: grid; 
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 25px;
+    }
+
+    .book-item {
+        max-width: 160px;
+    }
+
+    .book-cover {
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .popular-books {
+        padding: 0 15px;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 20px;
     }
 
     .book-item {
-        width: auto; 
-        flex: none;
+        max-width: 140px;
+    }
+
+    .book-cover {
+        height: 200px;
+    }
+
+    .book-title {
+        font-size: 14px;
+        min-height: 36px;
+    }
+
+    .book-author {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .book-cover {
+        height: 180px;
     }
 }

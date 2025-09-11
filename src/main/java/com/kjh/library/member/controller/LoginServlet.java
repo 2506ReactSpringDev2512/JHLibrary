@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("loginUser", loginUser);
 
             // 메인 페이지로 이동
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/main");
         } else {
             // 로그인 실패 → 에러 페이지
             request.setAttribute("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다.");

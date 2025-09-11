@@ -136,7 +136,7 @@
                     </tbody>
                 </table>
 
-                <a href="${pageContext.request.contextPath}/bookList.jsp" class="back-link" style="margin-top: 20px; display: inline-block;">목록으로 돌아가기</a>
+                <a href="${pageContext.request.contextPath}/member/bookList" class="back-link" style="margin-top: 20px; display: inline-block;">목록으로 돌아가기</a>
             </div>
         </div>
     </c:when>
