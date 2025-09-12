@@ -26,7 +26,6 @@
 ---
 <div align=left><h3> 📚 기술 스택 📚 </h3></div>
 <div align=left> 
-  <img src="https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white">
   <img src="https://img.shields.io/badge/oracle-F80000?style=flat&logo=oracle&logoColor=white">
   <img src="https://img.shields.io/badge/java-007396?style=flat&logo=java&logoColor=white">
   <br>
