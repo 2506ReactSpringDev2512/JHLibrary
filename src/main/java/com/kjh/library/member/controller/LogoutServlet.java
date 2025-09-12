@@ -27,6 +27,6 @@ public class LogoutServlet extends HttpServlet {
         }
 
         // 3. 로그아웃 후 index.jsp로 이동
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        response.sendRedirect(request.getContextPath() + "/");
     }
 }

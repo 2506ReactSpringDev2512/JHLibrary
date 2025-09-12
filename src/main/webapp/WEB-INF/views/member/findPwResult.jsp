@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+<style>
+	footer {
+        position: fixed;    /* 화면에 고정 */
+        bottom: 0;          /* 맨 아래 */
+        left: 0;
+        width: 100%;        /* 전체 너비 */
+        background-color: #333;  /* 기존 footer 색상과 맞춰주세요 */
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        z-index: 1000;      /* 다른 요소 위에 표시 */
+    }
+</style>
     <meta charset="UTF-8">
     <title>비밀번호 찾기 결과</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/mainHeader.css">

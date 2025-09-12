@@ -95,7 +95,8 @@
         });
 
         function viewBookDetails(bookId) {
-            alert('도서 상세 페이지로 이동합니다. (도서 ID: ' + bookId + ')');
+        	const contextPath = '${pageContext.request.contextPath}';
+            window.location.href = contextPath + '/member/bookDetail?bookNo=' + bookId;
         }
     </script>
 </body>

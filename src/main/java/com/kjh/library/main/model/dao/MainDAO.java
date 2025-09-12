@@ -14,7 +14,7 @@ public class MainDAO {
 
         String sql = "SELECT BOOK_NO, BOOK_NAME, BOOK_AUTHOR, IMAGE_PATH " +
                      "FROM BOOK_TBL " +
-                     "ORDER BY BOOK_NO DESC FETCH FIRST 5 ROWS ONLY";
+                     "ORDER BY BOOK_NO ASC FETCH FIRST 5 ROWS ONLY";
 
         PreparedStatement pstmt = null;
         ResultSet rs = null;
